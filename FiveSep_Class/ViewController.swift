@@ -25,7 +25,24 @@ class ViewController: UIViewController {
         
         // self.genericsFunction()
         //
-        self.genericTypeSecond()
+        //self.genericTypeSecond()
+        
+        //self.tuples()
+        
+        // Calling the function Returing Tuple
+        
+        //let result = minMax(numbers: [10, 14,7,12,50])
+        //print("My result \(result) ")
+        
+        
+        //Function as parameter (Higher Order)
+        
+        let sum = operate(5, 3) { $0 + $1 }
+        let product = operate(6, 6) { $0 * $1 }
+        
+        print(sum)
+        print(product)
+        
     }
 
     
@@ -33,7 +50,7 @@ class ViewController: UIViewController {
        
         print("Get Call on next button")
         
-        if textField.text?.count ?? 0 > 3 {
+        if textField.text?.count ?? 0 > 0 {
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             
@@ -121,9 +138,57 @@ class ViewController: UIViewController {
         stringStack.push("Swift")
         stringStack.push("Generics")
         print(stringStack.pop()) // Generics
-        
-        
     }
+    
+    func tuples() {
+        // Simple Tuple
+        let person = ("Jhon", 25)
+        print(person.0)  // "Jhon"
+        print(person.1)  // 25
+        
+        // Named Tuple
+        
+        let persons = (name: "xyz", age: 30)
+        print(persons.name)
+        print(persons.age)
+    }
+    
+    //Funcion Returning Tuple
+    
+    func minMax(numbers: [Int]) -> (min: Int, max: Int)? {
+        guard let first = numbers.first else {
+            return nil
+        }
+        
+        var minValue = first
+        var maxValue = first
+        
+        for num in numbers {
+            if num < minValue {
+                minValue = num
+            }
+            
+            if num > maxValue {
+                maxValue = num
+            }
+        }
+        return (minValue, maxValue)
+    }
+    
+    // Simple function
+    
+    func greet(name: String) -> String {
+        return "Hello, \(name)"
+    }
+    
+    func add(a: Int, b: Int) -> Int {
+        return a + b
+    }
+    
+    func operate(_ a: Int, _ b: Int, using operation: (Int, Int) -> Int) -> Int {
+        return operation(a, b)
+    }
+    
     
     
 }
@@ -202,5 +267,15 @@ struct Stack<T> {
     }
 }
 
+
 // Tuples
+
+// A tuple groups multiple values into a single compound value
+
+
+
 // Functions
+ // Functions are the self-Contained pieces fo code that perform a task
+
+
+// Closure
